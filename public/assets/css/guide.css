@@ -1,0 +1,145 @@
+/* -------- List tutorial ------ */
+
+.card-guide {
+    width: 300px;
+    height: 416px;
+    overflow: hidden;
+    margin: 0 15px 15px 0;
+    border: 2px solid #aaa9a9;
+    padding: 0;
+    font-family: 'Livvic', sans-serif;
+    background-color: white;
+    display: inline-block;
+    position: relative;
+}
+
+.card-guide-resume {
+    max-height: 54px;
+    min-height: 54px;
+    transition: all 1.4s ease-out;
+    display: flex;
+}
+
+.card-guide p {
+    margin: 0;
+    padding: 0 15px 0 15px;
+    text-align: justify;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin: auto;
+}
+
+.card-guide:hover p {
+    -webkit-line-clamp: 50; /* number of lines to show */
+}
+
+#you {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+}
+
+.card-guide:hover img {
+    filter: brightness(40%);
+    -webkit-filter: brightness(40%);
+}
+
+
+.card-guide:hover .card-guide-resume {
+    max-height: 416px;
+    padding-bottom:20px;
+}
+
+.card-guide:hover .card-guide-title, .card-guide:hover .card-guide-title h2 {
+    height: auto;
+    white-space: normal;
+}
+
+.card-guide:hover img {
+    opacity:0.9         ;
+}
+
+.card-guide-title h2 {
+    height: 40px;
+    width: 300px;
+    padding: 5px;
+    font-size: 1.4rem;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: #aaa9a9;
+    color:#fff;
+    background: #e32f51;
+}
+
+.img-card-guide {
+    height: 310px;
+}
+
+.img-card-guide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 100% 100%;
+}
+/* -------- Tutorial open ------ */
+
+.tutorial_img .block_News_Open_Img {
+    height: 300px;
+    margin-bottom: 15px;
+}
+.tutorial_img .block_News_Open_Img img {
+    object-position: 0% 30%;
+}
+
+/* -------- Tutorial open - Like ------ */
+
+.click_good img, .click_bad img {
+    width: 100%;
+}
+
+.disable_like:hover {
+    opacity: 1;
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
+.click_good p, .click_bad p {
+    font-size: 2.5rem;
+    position: absolute;
+    bottom: -15px;
+    color: #918a8a;
+    right: 0;
+}
+
+.disable_like {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.click_good, .click_bad {
+    display: flex;
+    color: #2cb02c;
+    position: relative;
+}
+
+#like_tuto {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.block_News_Open .error_comment {
+    font-family: Open Sans Condensed;
+    font-size: 1.5rem;
+text-align: center;
+    padding: 0;
+}

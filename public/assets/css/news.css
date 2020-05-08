@@ -1,0 +1,26 @@
+#form_news {
+    background-color: white;
+    border: none;
+    color: #858484;
+    font-family: 'Livic', sans-serif;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+    padding: 0;
+}
+
+.checkbox_news {
+    margin: 10px;
+}
+
+#form_news trix-toolbar {
+    background: #ff3359;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#form_news trix-toolbar .trix-button-group {
+    margin-bottom: 0;
+}
