@@ -261,3 +261,49 @@ input[type="submit"] {
     font-weight: bold;
     color: #878282;
 }
+
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+    width: 50%;
+}
+
+hr:after {
+    display: inline-block;
+    background: #fff;
+    content: '*';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}
+
+@media (max-width: 800px) {
+    #bloc_Date {
+        display: none!important;
+    }
+    .navbar-admin ul {
+        display: block;
+    }
+}
+
+@media (max-width: 900px) {
+    .avatar_table, .subscribe_table {
+        display: none;
+    }
+
+    .table td, th {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin_connect {
+        display: none!important;
+    }
+}

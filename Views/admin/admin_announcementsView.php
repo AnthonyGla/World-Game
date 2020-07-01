@@ -1,5 +1,5 @@
 <?php
-$this->titre = "Administration";
+$this->titre = "Administration - Annonces";
 ?>
 <h1>Annonces</h1>
 <div class="row justify-content-center">

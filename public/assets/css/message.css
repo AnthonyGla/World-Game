@@ -1,0 +1,26 @@
+.mp_text {
+    font-size: 0.9rem!important;
+    font-style: italic;
+    text-align: right!important;
+}
+
+.button_style {
+    background: white;
+    border: 1px solid #d7d4d4;
+    width: auto;
+    padding: 10px 15px 10px 15px;
+    margin: 10px auto 10px auto;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+}
+
+.recpetion_link {
+    text-decoration: underline;
+}
+
+.mp_subject {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

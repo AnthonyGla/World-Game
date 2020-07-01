@@ -21,6 +21,7 @@ else {
     <link rel="stylesheet" href="/public/assets/css/profil.css">
     <link rel="stylesheet" href="/public/assets/css/news.css">
     <link rel="stylesheet" href="/public/assets/css/forum.css">
+    <link rel="stylesheet" href="/public/assets/css/message.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
@@ -28,10 +29,10 @@ else {
 <body>
 <header>
     <div class="row">
-        <div id="bloc_Header_News" class="col-lg-1 col-2">
+        <div id="bloc_Header_News" class="col-xl-1 col-2">
             ACTUALITÉS
         </div>
-        <div id="carous" class="col-lg-8 col-7">
+        <div id="carous" class="col-xl-8 col-10">
             <ul id="bloc_Header_Defilement" >
 
                 <?php foreach ($list_announcements as $announcements) { ?>
@@ -61,9 +62,13 @@ else {
 <script src="/public/assets/js/attachments.js"></script>
 <script src="/public/assets/js/tutorial.js"></script>
 <script src="/public/assets/js/news.js"></script>
+<script src="/public/assets/js/user_info.js"></script>
 
 </body>
 <footer>
     <p>© eSport Gaming, 2019 - Tous droits réservés </p>
+    <p> Informations cookies
+        - Politique de confidentialité
+        - Informations personnelles</p>
 </footer>
 </html>

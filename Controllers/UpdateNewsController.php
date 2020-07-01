@@ -2,27 +2,28 @@
 class UpdateNews_Class
 {
     private static $data_view;
-
     public function __construct()
     {
         if (!empty($_GET['id_news'])) {
-            $id_news = trim(filter_input(INPUT_GET, 'id_news', FILTER_SANITIZE_NUMBER_INT));
-            $news_to_modify = new News();
-            $news_to_modify->id = $id_news;
-
-            $news = $news_to_modify->getOneById();
-            self::$data_view["news"] = $news;
-
-            $list_Category = $news_to_modify->getListCategory();
-            self::$data_view["list_Category"] = $list_Category;
+            $this->getNews();
+            $this->getListCategory();
         }
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->verification($id_news);
+            $this->verification(self::$data_view["news"]->id);
         }
         $this->buildView();
     }
-
+    public function getNews() {
+        $id_news = trim(filter_input(INPUT_GET, 'id_news', FILTER_SANITIZE_NUMBER_INT));
+        $news_to_modify = new News();
+        $news_to_modify->id = $id_news;
+        $news = $news_to_modify->getOneById();
+        self::$data_view["news"] = $news;
+    }
+    public function getListCategory() {
+        $list_Category = self::$data_view["news"]->getListCategory();
+        self::$data_view["list_Category"] = $list_Category;
+    }
     public function verification($id_news)
     {
         $errors = [];

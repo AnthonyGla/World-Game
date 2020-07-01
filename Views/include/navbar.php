@@ -1,10 +1,10 @@
 <div id="navbar" class="row">
     <div id="logo" class="d-flex col-2">
-        <a href="../../index.php">
+        <a href="/accueil.html">
             <img src="/public/assets/img/logo.png">
         </a>
     </div>
-    <div class="col-8 col-">
+    <div class="col-8">
         <nav class="navbar navbar-expand-lg navbar-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,16 +38,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="navbar_Submenu">
-                                <a href="/league-of-legends/patch.html">
-                                    <div id="lol_Guide" class="navbar_Submenu_Bloc d-flex">
-                                        <div class="navbar_Submenu_Bloc_Logo"><i class="fas fa-band-aid"></i></div>
-                                        <div class="navbar_Submenu_Bloc_Txt">
-                                            <div class="text-left"><p><span class="h4 text-dark">Patch Note</span><br/>Tous les changements sur le patch de jeu actuel</p></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                       
                         </div>
                     </li>
                     <li class="nav-item dropdown <?php if ($page == 'tft') {echo 'active';} ?>">
@@ -66,20 +57,10 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="navbar_Submenu">
-                                <a href="/teamfight-tactics/patch.html">
-                                    <div id="lol_Guide" class="navbar_Submenu_Bloc d-flex">
-                                        <div class="navbar_Submenu_Bloc_Logo"><i class="fas fa-band-aid"></i></div>
-                                        <div class="navbar_Submenu_Bloc_Txt">
-                                            <div class="text-left"><p><span class="h4 text-dark">Patch Note</span><br/>Tous les changements sur le patch de jeu actuel</p></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink">
-                            <i class="fas fa-feather-alt"></i>Legend Of Runeterra
+                            <i class="fas fa-feather-alt"></i>Valorant
                         </a>
                         <!-- bloc menu déroulant -->
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -107,18 +88,21 @@
     <div class="col-2 d-flex profil">
         <div class="d-flex">
         <?php if (isset($_SESSION['id'])) { ?>
-            <img src="<?= $_SESSION['avatar']; ?>" alt="logo candidat"/>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <img src="<?= $_SESSION['avatar'].'?nocache='.time(); ?>" alt="logo candidat"/>
+            </a>
             <div class="dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span><i class="fas fa-angle-down"></i></span>
+                    <span><i class="profil_down fas fa-angle-down"></i></span>
                 </a> <!-- lien -->
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/modifications.html"><i class="fas fa-cog"></i> Modifier mes informations</a>
                     <a class="dropdown-item" href="/messagerie.html"><i class="fas fa-envelope-open"></i> Messages privés</a>
-                    <a class="dropdown-item" href="/profil.html"><i class="fas fa-eye"></i>Voir mon profil</a>
+                    <a class="dropdown-item" href="/profil"><i class="fas fa-eye"></i>Voir mon profil</a>
                     <a class="dropdown-item" href="/deconnection.html"><i class="fas fa-door-open"></i>Déconnexion</a>
                     <?php if ($_SESSION['rank'] >= 3) { ?>
-                    <a class="dropdown-item" id="navbar-border-top" href="/article/ajouter.html"><i class="fas fa-pencil-alt"></i>Écrire un article</a>
+                        <a class="dropdown-item" id="navbar-border-top" href="/article/ajouter.html"><i class="fas fa-pencil-alt"></i>Écrire un article</a>
+                        <a class="dropdown-item" href="/tutoriel/ajouter.html"><i class="fas fa-pen-nib"></i>Ajouter un tutoriel</a>
                     <?php }
                     if ($_SESSION['rank'] >= 4) { ?>
                     <a class="dropdown-item" href="/administration.html"><i class="fas fa-user-lock"></i>Administration</a>

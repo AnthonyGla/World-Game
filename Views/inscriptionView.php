@@ -2,7 +2,7 @@
 $this->titre = 'Inscription';
 ?>
 <div class="row justify-content-center">
-    <div class="block_page col-11 col-xl-9 col-lg-10 mt-4">
+    <div class="block_page col-12 col-sm-11 col-xl-9 col-lg-10 mt-4">
         <h1><i class="fas fa-clipboard-check"></i>Inscription</h1>
         <?php if (!isset($validation)) {
             ?>
@@ -50,8 +50,8 @@ $this->titre = 'Inscription';
         else {
             ?>
             <img src="https://vignette.wikia.nocookie.net/leagueoflegends/images/d/d6/Scout-Approved_Emote.png/revision/latest/top-crop/width/220/height/220?cb=20171120233445">
-            <p class="redirection_text_form">Votre inscription a été prise en compte. Ua mail contenant un lien d'activation vous a été envoyé.</p>
-            <p class="redirection_text_form" id="redirection_text">Vous serez automatiquement redirigé vers l'index dans <span>5</span> secondes.</p>
+            <p class="redirection_text_form text-center">Votre inscription a été prise en compte. Un mail contenant un lien d'activation vous a été envoyé.</p>
+            <p class="redirection_text_form text-center" id="redirection_text">Vous serez automatiquement redirigé vers l'index dans <span>5</span> secondes.</p>
         <?php } ?>
     </div>
 </div>

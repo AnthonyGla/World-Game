@@ -1,4 +1,5 @@
 $(function () {
+
     $('#member_list_select').change(function () {
         value = $("#member_list_select").val();
         if (value == 'allUser') {
@@ -37,7 +38,7 @@ $(function () {
                         $('.ajax_table tbody').append(`
         <tr>
             <td>${index + 1}</td>
-            <td class="list_avatar"><img src="${data[index].avatar}"></td>
+            <td class="avatar_table list_avatar"><img src="${data[index].avatar}"></td>
             <td class="search_username"><a href="/administration/modifier-utilisateur/${data[index].username}.html">${data[index].username}</a></td>
             <td>${data[index].date}</td>
             <td>${data[index].count}</td>
@@ -71,7 +72,7 @@ $(function () {
             if (result.value) {
 
                 $.get(
-                    '/public/index.php?action=modifyUser',
+                    '/public/index.php?action=admin_modifyUser',
                     {
                         default_avatar: '/public/assets/img/users_avatars/default.png',
                         id: $("h2").attr('id'),
@@ -84,7 +85,7 @@ $(function () {
                                 'Le fichier a bien été supprimé, l\'avatar par défaut a été mis en place.',
                                 'success'
                             )
-                            let default_avatar = '/public/assets/img/users_avatars/default.png';
+                            var default_avatar = '/public/assets/img/users_avatars/default.png';
                             $("#userinfo_avatar img").attr('src', default_avatar);
 
                         } else {
@@ -201,18 +202,107 @@ $(function () {
                             $('#'+id_announcement).remove('');
                         }
                         else {
-                                Swal.fire(
-                                    'Erreur !',
-                                    'Vous n\'êtes pas autorisé à supprimer cette annonce.',
-                                    'error'
-                                )
+                            Swal.fire(
+                                'Erreur !',
+                                'Vous n\'êtes pas autorisé à supprimer cette annonce.',
+                                'error'
+                            )
                         }
                     },
                     'text'
                 );
-    }
-})
-});
+            }
+        })
+    });
 
+    $('body').on('click', '.delete_permissions', function (e) {
+        e.preventDefault();
+        let id_username = $(this).attr('id');
 
+        Swal.fire({
+            title: 'Êtes-vous certain ?',
+            text: id_username+" sera retiré de ce groupe !",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, retire !',
+            cancelButtonText: 'Non !'
+        }).then((result) => {
+            if (result.value) {
+                $.get(
+                    '/public/index.php?action=admin_permissions',
+                    {
+                        id_username: id_username,
+                    },
+                    function (data) {
+                        if (data == 'Success') {
+                            Swal.fire(
+                                'Supprimé !',
+                                id_username+' a bien été retiré de ce groupe.',
+                                'success'
+                            )
+                            $('.'+id_username).css('display', 'none');
+                        }
+                        else {
+                            Swal.fire(
+                                'Erreur !',
+                                'Vous n\'êtes pas autorisé à modifier ces permissions.',
+                                'error'
+                            )
+                        }
+                    },
+                    'text'
+                );
+            }
+        })
+    });
+    $('body').on('click', '.add_permissions', function (e) {
+        e.preventDefault();
+        where = $(this).attr('id');
+        username = $('.'+where).val();
+        if (where == 'add_modo') {rank = 2;}
+        else if (where == 'add_writer') {rank = 3;}
+        else if (where == 'add_admin') {rank = 4;}
+
+        Swal.fire({
+            title: 'Êtes-vous certain ?',
+            text: username+" sera ajouté à ce groupe !",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, ajoute !',
+            cancelButtonText: 'Non !'
+        }).then((result) => {
+            if (result.value) {
+                $.get(
+                    '/public/index.php?action=admin_permissions',
+                    {
+                        username: username,
+                        rank: rank,
+                    },
+                    function (data) {
+                        if (data == 'Success') {
+                            Swal.fire(
+                                'Ajouté !',
+                                username+' a bien été ajouté à ce groupe.',
+                                'success'
+                            )
+                            $('.'+username).css('display', 'none');
+                            $('ul[name='+where+']').append(' <li class="'+username+'">'+username+'<a href=""><i id="'+username+'" class="delete_permissions fas fa-user-times"></i></a></li>');
+                        }
+                        else {
+                            Swal.fire(
+                                'Erreur !',
+                                'Vous n\'êtes pas autorisé à ajouter d\'utilisateur à ce groupe.',
+                                'error'
+                            )
+                        }
+                    },
+                    'text'
+                );
+            }
+        })
+    });
 });

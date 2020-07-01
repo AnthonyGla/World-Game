@@ -15,7 +15,6 @@ class Inscription_Class
             $this->checkUsernameAjax();
             exit();
         }
-
         $this->buildView(self::$data_view);
     }
 
@@ -84,40 +83,47 @@ class Inscription_Class
             }
         }
 
-    if ($isSubmitted && count($errors) == 0) {
-        $pass = password_hash($pass, PASSWORD_DEFAULT);
-        $key = md5(microtime(TRUE)*100000);
-        $user = new User($username, $mail, $pass, $key);
-        $user->create();
-        $validation = true;
+        if ($isSubmitted && count($errors) == 0) {
+            $pass = password_hash($pass, PASSWORD_DEFAULT);
+            $key = md5(microtime(TRUE)*100000);
+            $user = new User($username, $mail, $pass, $key);
+            $user->create();
+            $user = $user->selectByUsername($user->username);
+            $game = new Game();
+            $game->create($user->id, 1);
+            $game->create($user->id, 2);
+            $game->create($user->id, 3);
+            $message = new Messages();
+            $message->create('Bienvenue sur World Game', 'Toute l\'équipe vous souhaite la bienvenue', $user->id, 60);
+            $validation = true;
 
-        $to	= $mail;
-        $subject = "Activer votre compte sur World Game" ;
-        $headers = 'From: inscription@worldgame.com' . "\r\n";
-        $headers .= "X-Mailer: PHP ".phpversion()."\n";
-        $headers .= "X-Priority: 3 \n";
-        $headers .= "Mime-Version: 1.0\n";
-        $headers .= "Content-Transfer-Encoding: 8bit\n";
-        $headers .= "Content-type: text/html; charset= utf-8\n";
-        $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n";
-        $message = 'Bienvenue sur World Game. Pour activer votre compte, veuillez cliquer sur le lien ci-dessous
+            $to	= $mail;
+            $subject = "Activer votre compte sur World Game" ;
+            $headers = 'From: inscription@worldgame.com' . "\r\n";
+            $headers .= "X-Mailer: PHP ".phpversion()."\n";
+            $headers .= "X-Priority: 3 \n";
+            $headers .= "Mime-Version: 1.0\n";
+            $headers .= "Content-Transfer-Encoding: 8bit\n";
+            $headers .= "Content-type: text/html; charset= utf-8\n";
+            $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n";
+            $message = 'Bienvenue sur World Game. Pour activer votre compte, veuillez cliquer sur le lien ci-dessous
         ou copier/coller le dans votre navigateur Internet.
-        http://votresite.com/activation.php?log='.urlencode($username).'&cle='.urlencode($key).'
+        projet/activation.php?log='.urlencode($username).'&key='.urlencode($key).'
          
         ---------------
         Ceci est un mail automatique, Merci de ne pas y répondre.';
-        mail($to, $subject, $message, $headers);
-        header('refresh:5;url=accueil.html');
+            mail($to, $subject, $message, $headers);
+            header('refresh:5;url=accueil.html');
 
-        self::$data_view["validation"] = $validation ;
-    }
-    else {
-        self::$data_view["errors"] = $errors;
-        self::$data_view["username"] = $username;
-        self::$data_view["mail"] = $mail;
-        self::$data_view["pass"] = $pass;
-        self::$data_view["confirmpass"] = $confirmpass;
-    }
+            self::$data_view["validation"] = $validation ;
+        }
+        else {
+            self::$data_view["errors"] = $errors;
+            self::$data_view["username"] = $username;
+            self::$data_view["mail"] = $mail;
+            self::$data_view["pass"] = $pass;
+            self::$data_view["confirmpass"] = $confirmpass;
+        }
         self::$data_view["isSubmitted"] = $isSubmitted;
     }
 
@@ -125,5 +131,4 @@ class Inscription_Class
         $view = new View("inscription");
         $view->generer($array);
     }
-
 }

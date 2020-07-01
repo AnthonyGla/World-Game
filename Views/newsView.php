@@ -2,7 +2,7 @@
 $this->titre = $news->title;
 ?>
 <div class="row justify-content-center">
-      <div class="block_News_Open col-11 col-xl-9 col-lg-10 mt-4">
+    <div class="block_News_Open col-12 col-sm-11 col-xl-9 col-lg-10 mt-4">
         <h1 class="text-center">
             <i class="fas fa-certificate"></i>
             <?= $news->title ?>
@@ -11,7 +11,7 @@ $this->titre = $news->title;
               Publié le <?= $news->date; ?>, par <?= $news->id_users ?>
               <span>- <?= $news->id_news_category ?></span>
               <?php if (!empty($_SESSION) AND $_SESSION['rank'] >= 3) { ?>
-              <a class="disable_news" id="<?= $news->id; ?>" href="#"><i class="h3 fas fa-eye-slash"></i></a>
+              <a class="disable_news ml-2" id="<?= $news->id; ?>" href="#"><i class="h3 fas fa-eye-slash"></i></a>
               <a href="/article/modifier/<?= $news->id; ?>.html"><i class="h3 fas fa-edit"></i></a>
               <?php } ?>
           </p>

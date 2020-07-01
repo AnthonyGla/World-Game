@@ -1,5 +1,4 @@
 <?php
-
 class Connection_Class
 {
     public function __construct()

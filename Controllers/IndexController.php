@@ -1,5 +1,7 @@
 <?php
 class Index_Class {
+    private static $data_view;
+
     public function __construct() {
         $news = new News();
         $donnees = $news->getAll();
@@ -8,7 +10,14 @@ class Index_Class {
         foreach($donnees as $key=>$value){
             $value->date = strtotime($value->date);
         }
-        $vue = new View("index", 'E-Sport Gaming');
-        $vue->generer(array('donnees' => $donnees, 'news_star' => $news_star, 'dateformat' => $dateformat));
+        self::$data_view["donnees"] = $donnees;
+        self::$data_view["news_star"] = $news_star;
+        self::$data_view["dateformat"] = $dateformat;
+        $this->buildView();
+    }
+
+    private function buildView() {
+        $view = new View("index");
+        $view->generer(self::$data_view);
     }
 }

@@ -1,16 +1,20 @@
 <?php
-$this->titre = "Patch Note - League Of Legends";
+$this->titre = "Tutoriel - ".$tutorial->title;
 ?>
 <div class="row justify-content-center">
-    <div class="block_News_Open col-11 col-xl-9 col-lg-10 mt-4">
+    <div class="block_page col-12 col-sm-11 col-xl-9 col-lg-10 mt-4">
         <h1><i class="fas fa-chalkboard-teacher"></i><?= $tutorial->title ?></h1>
         <p id="openNewsDate">
             Guide publié le <?= $tutorial->date ?>, par <?= $tutorial->id_users ?>
             <span><?php if ($tutorial->maj_tuto != NULL) {echo '- Derniére mise à jour le '.$tutorial->maj_tuto;} ?></span>
+        <?php if (!empty($_SESSION) AND $_SESSION['rank'] >= 3) { ?>
+            <a class="disable_tutorial ml-2" id="<?= $tutorial->id; ?>" href="#"><i class="h3 fas fa-eye-slash"></i></a>
+            <a href="/tutoriel/modifier/<?= $tutorial->id; ?>.html"><i class="h3 fas fa-edit"></i></a>
+        <?php } ?>
         </p>
         <div class="block_News_Open_Txt tutorial_img">
             <div class="block_News_Open_Img"><img src="<?= $tutorial->cover_img ?>" alt="Image_News"></div>
-            <?= $tutorial->text; ?>
+            <p><?= $tutorial->text; ?></p>
         </div>
             <div id="like_tuto">
                 <a href="#" id="1" class="like_button">

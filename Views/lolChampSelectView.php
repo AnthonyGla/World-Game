@@ -18,7 +18,7 @@ function color_lane($tags) {
 }
 ?>
 <div class="row justify-content-center">
-  <div class="block_News_Open col-11 col-xl-9 col-lg-10 mt-4">
+    <div class="block_page col-12 col-sm-11 col-xl-9 col-lg-10 mt-4">
     <h1><i class="fas fa-book"></i><?php echo $id.' - '.$liste['data'][$id]['title'];?></h1>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" role="listbox">

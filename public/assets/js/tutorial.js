@@ -37,3 +37,65 @@ $(document).on('click', '.like_button', function(e){
         'text'
     );
 });
+
+$('.disable_tutorial').click(function () {
+    this.preventDefault;
+    Swal.fire({
+        title: 'Êtes-vous certain ?',
+        text: "Ce tutoriel sera désactivé !",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui, désactive !',
+        cancelButtonText: 'Non !'
+    }).then((result) => {
+        if (result.value) {
+            let id_tuto = $(this).attr('id');
+            $.get(
+                '/public/index.php?action=openTutorial',
+                {
+                    id_tuto: id_tuto,
+                },
+                function (data) {
+                    if (data == 'Success') {
+                        Swal.fire(
+                            'Désactivation !',
+                            'Le tutoriel a bien été désactivé.',
+                            'success'
+                        )
+                    }
+                    else {
+                        Swal.fire(
+                            'Erreur !',
+                            'Vous n\'êtes pas autorisé à supprimer ce tutoriel.',
+                            'error'
+                        )
+                    }
+                    setTimeout(function(){window.location="/accueil.html";}, 1000);
+                },
+                'text'
+            );
+        }
+    })
+});
+
+$('.file_upload').on('change', function () {
+    var upload_file = this.files[0];
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        if (upload_file.type == 'image/png' || upload_file.type == 'image/gif' || upload_file.type == 'image/jpg' || upload_file.type == 'image/jpeg') {
+            $('.cover_add').css('display', 'block');
+            $('.cover_add img').attr("src", event.target.result);
+            $('.error_cover').html('');
+        }
+        else {
+            $('.cover_add').css('display', 'none');
+            $('.error_cover').html('Ce fichier n\'est pas autorisé');
+        }
+    };
+    reader.onerror = function(event) {
+        alert("I AM ERROR: " + event.target.error.code);
+    };
+    reader.readAsDataURL(upload_file);
+})

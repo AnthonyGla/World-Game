@@ -1,17 +1,12 @@
 <?php
 class View {
 
-    // Nom du fichier associé à la vue
-    private $fichier;
-    // Titre de la vue (défini dans le fichier vue)
-    private $titre;
-
     public function __construct($action) {
-        // Détermination du nom du fichier vue à partir de l'action
         $this->fichier = "../Views/" . $action . "View.php";
         if (!file_exists($this->fichier)) {
-        $this->fichier = "../Views/admin/" . $action . "View.php";
-    }
+            $this->fichier = "../Views/admin/" . $action . "View.php";
+        }
+        $this->titre= null;
     }
 
     // Génère et affiche la vue
@@ -41,7 +36,9 @@ class View {
     private function genererFichier($fichier, $donnees) {
         if (file_exists($fichier)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
-            extract($donnees);
+            if (!empty($donnees)) {
+                extract($donnees);
+            }
             // Démarrage de la temporisation de sortie
             ob_start();
             // Inclut le fichier vue

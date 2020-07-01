@@ -17,7 +17,7 @@
 <div id="back_index" class="d-flex justify-content-between">
     <a class="d-flex align-items-center pl-2" href="/accueil.html"><i class="fas fa-eye"></i>Retourner voir le site</a>
     <div id="bloc_Date" class="d-flex"><p class="m-auto"></p></div>
-    <div class="d-flex align-items-center pr-2"><p>Connecté avec le compte : <?= $_SESSION['username']; ?></p><div id="navbar_avatar"><img src="<?= $_SESSION['avatar']; ?>"></div></div>
+    <div class="d-flex align-items-center pr-2 admin_connect"><p>Connecté avec le compte : <?= $_SESSION['username']; ?></p><div id="navbar_avatar"><img src="<?= $_SESSION['avatar']; ?>"></div></div>
 </div>
 <div class="container-fluid h-100vh">
     <div class="row h-100">
@@ -43,7 +43,7 @@
                     <i class="fas fa-star-of-life"></i>Gérer un utilisateur
                 </li>
             </a>
-            <a class="nav-link pl-0" href="#">
+            <a class="nav-link pl-0" href="/administration/permissions.html">
                 <li class="nav-item">
                     <i class="fas fa-star-of-life"></i>Gestion des droits
                 </li>
@@ -73,5 +73,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="/public/assets/js/script.js"></script>
 <script src="/public/assets/js/admin.js"></script>
+<script src="/public/assets/js/permissions.js"></script>
 
 </body>

@@ -2,7 +2,7 @@
 $this->titre = "Mon profil";
 ?>
 <div class="row justify-content-center">
-      <div class="block_profil col-11 col-xl-9 col-lg-10 mt-4">
+    <div class="block_page col-12 col-sm-11 col-xl-9 col-lg-10 mt-4">
         <h1 class="text-center"><i class="fas fa-certificate"></i>Profil</h1>
 <div class="row">
           <div class="list_champ_mastery col-3">

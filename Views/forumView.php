@@ -1,5 +1,8 @@
+<?php
+$this->titre = 'Forum';
+?>
 <div class="row justify-content-center">
-    <div class="block_News_Open col-11 col-xl-9 col-lg-10 mt-4">
+    <div class="block_page col-12 col-sm-11 col-xl-9 col-lg-10 mt-4">
         <h1><i class="far fa-comment-alt"></i>Forum</h1>
         <table id="forum_category">
             <tbody>

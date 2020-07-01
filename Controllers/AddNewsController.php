@@ -36,7 +36,6 @@ class AddNews_Class
             $valid_extension = array('jpg', 'jpeg', 'gif', 'png');
             $upload_extension = strtolower(substr(strrchr($_FILES['cover_img']['name'], '.'), 1));
 
-
             if ($_FILES['cover_img']['size'] > $weightMax || $_FILES['cover_img']['size'] == 0) {
                 $errors['cover_img'] = 'L\'image selectionné depasse le poids autorisé';
             }
@@ -62,15 +61,18 @@ class AddNews_Class
 
         if (count($errors) == 0) {
             $filename = pathinfo($_FILES['cover_img']['name'], PATHINFO_FILENAME);
-            $road = 'assets/img/news_cover/' .$filename. ' - ' .$_FILES['cover_img']['size']. '.' .$upload_extension;
+            $road = ROOT.'/public/assets/img/news_cover/' .$filename. ' - ' .$_FILES['cover_img']['size']. '.' .$upload_extension;
             move_uploaded_file($_FILES['cover_img']['tmp_name'], $road);
-            $cover_img = $road;
+            $cover_img = '/public/assets/img/tutorial_cover/' .$filename. ' - ' .$_FILES['cover_img']['size']. '.' .$upload_extension;
             $addNews = new News($news_title, $cover_img, $text, $news_star, $_SESSION['id'], $news_category);
             $validation = true;
             $addNews->create();
             self::$data_view["validation"] = $validation;
         }
         else {
+            self::$data_view["news_title"] = $news_title;
+            self::$data_view["news_text"] = $text;
+            self::$data_view["news_star"] = $news_star;
             self::$data_view["errors"] = $errors;
         }
     }

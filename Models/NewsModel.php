@@ -32,12 +32,17 @@ class News
     public $id_news_category;
 
     /**
+     * @var type integer
+     */
+    public $active;
+
+    /**
      * @var type string
      */
     public $date;
 
 
-    public function __construct($_title = '', $_cover_img = '', $_text = '', $_star = '', $_id_users = '', $_id_news_category = '', $_date = '')
+    public function __construct($_title = '', $_cover_img = '', $_text = '', $_star = '', $_id_users = '', $_id_news_category = '', $_active = '', $_date = '')
     {
         $this->title = $_title;
         $this->cover_img = $_cover_img;
@@ -45,6 +50,7 @@ class News
         $this->star = $_star;
         $this->id_users = $_id_users;
         $this->id_news_category = $_id_news_category;
+        $this->active = $_active;
         $this->date = $_date;
     }
 
@@ -77,6 +83,7 @@ class News
                 $this->star = $news->star;
                 $this->id_users = $news->username;
                 $this->id_news_category = $news->name;
+                $this->active = $news->active;
                 return $this;
             }
         }

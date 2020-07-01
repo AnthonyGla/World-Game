@@ -2,7 +2,7 @@
 $this->titre = "World Game";
 ?>
 <div class="row justify-content-center home_News">
-    <div class="col-xl-3 col-11 m-0">
+    <div class="col-xl-3 col-12 m-0">
         <div class="home_Left_News slide_left">
             <ul>
                 <?php
@@ -21,7 +21,7 @@ $this->titre = "World Game";
             </ul>
         </div>
     </div>
-    <div class="col-xl-6 col-11 m-0">
+    <div class="col-xl-6 col-12 m-0">
         <?php
         ?>
         <div class="home_Center_News">
@@ -33,11 +33,10 @@ $this->titre = "World Game";
 
                     <p>Publié le <?= $dateformat->format($donnees[$i]->date); ?> - <span class="news_categorie"><?= $news_star->name; ?></span></p>
                     <h1><?php echo $news_star->title ?></h1>
-                    <img src="<?= $news_star->avatar; ?>" alt="logo candidat"/><h2>Par <?= $news_star->username ?></h2>
                 </div>
         </div></a>
     </div>
-    <div class="col-xl-3 col-11 m-0">
+    <div class="col-xl-3 col-12 m-0">
         <div class="home_Left_News slide_right">
             <ul>
                 <?php

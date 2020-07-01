@@ -1,4 +1,19 @@
 $(function () {
+    resizeLi();
+
+
+    $( window ).resize(function() {
+        resizeLi();
+    });
+
+    function resizeLi() {
+        heightUl = $('.home_Left_News ul').outerHeight();
+        heightLi = (heightUl / 3) - 8;
+        $('.home_Left_News li').each(function () {
+            $(this).css('height', heightLi)
+        });
+    }
+
     setInterval(function () {
 // les noms de jours / mois
         var jours = new Array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
@@ -19,7 +34,8 @@ $(function () {
             secondes = "0" + secondes;
         }
         $('#bloc_Date p').html('<i class="far fa-calendar-alt"></i>' + message + heure + ":" + minutes + ":" + secondes);
-    })
+    });
+
 
 
     setInterval(function() {
@@ -49,8 +65,6 @@ $(function () {
             })
         }
     }, 8000);
-
-    $( ".slide_right ul" ).draggable({ axis: "y"});
 
     $('#search_champ').keyup(function () {
         let value_search = $('#search_champ').val();

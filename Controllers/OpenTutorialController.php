@@ -5,34 +5,46 @@ class OpenTutorial_Class
 
     public function __construct()
     {
+        if (!empty($_GET['id_tuto'])) {
+            $this->disabled_tutorial();
+            exit();
+        }
+
         if (isset($_POST['id_tutorial'])) {
             $this->likeDislikeAjax();
             exit();
         }
-        else {
-            $this->selectTutorial();
-        }
-
+        $this->buildTutorial();
         $this->buildView();
-
     }
 
-    private function selectTutorial() {
-        $id_tuto = trim(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+    private function buildTutorial() {
         $tutorial = new Tutorial();
-        $tutorial = $tutorial->getOneById($id_tuto);
-
-        $count_like = $tutorial->getLike($id_tuto);
-        $count_dislike = $tutorial->getDislike($id_tuto);
-        $dateformat = new IntlDateFormatter('fr_FR', NULL, NULL, NULL, NULL, 'dd MMMM yyyy à hh:mm');
-        $tutorial->date = $dateformat->format(strtotime($tutorial->date));
-        $tutorial->maj_tuto = $dateformat->format(strtotime($tutorial->maj_tuto));
-        if (!empty($_SESSION['id'])) {
-            $like = $tutorial->checkLike($id_tuto);
+        $tutorial->id = trim(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+        if ((!$tutorial->getOneById($tutorial->id)) || $tutorial->active == 0){
+            header('Location: /page-introuvable.html');
         }
-        self::$data_view["tutorial"] = $tutorial;
-        self::$data_view["count_like"] = $count_like;
-        self::$data_view["count_dislike"] = $count_dislike;
+        else {
+            $count_like = $tutorial->getLike($tutorial->id);
+            $count_dislike = $tutorial->getDislike($tutorial->id);
+            $dateformat = new IntlDateFormatter('fr_FR', NULL, NULL, NULL, NULL, 'd MMMM yyyy à HH:mm');
+            $tutorial->date = $dateformat->format(strtotime($tutorial->date));
+            $tutorial->maj_tuto = $dateformat->format(strtotime($tutorial->maj_tuto));
+            if (!empty($_SESSION['id'])) {
+                $like = $tutorial->checkLike($tutorial->id);
+            }
+            self::$data_view["tutorial"] = $tutorial;
+            self::$data_view["count_like"] = $count_like;
+            self::$data_view["count_dislike"] = $count_dislike;
+        }
+    }
+
+    private function disabled_tutorial() {
+        $id_tuto = filter_input(INPUT_GET, 'id_tuto', FILTER_SANITIZE_NUMBER_INT);
+        $tuto_disabled = new Tutorial();
+        $tuto_disabled->id = $id_tuto;
+        $tuto_disabled->disabled();
+        echo 'Success';
     }
 
     private function likeDislikeAjax() {

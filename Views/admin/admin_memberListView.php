@@ -1,3 +1,6 @@
+<?php
+$this->titre = "Administration - Liste des membres";
+?>
 <h1>Liste des membres</h1>
 <p>Il y a actuellement <?= $total_member; ?> inscrits sur le site.</p>
 <select id="member_list_select" class="form-control form-control-lg">
@@ -28,7 +31,7 @@
     <tr>
         <th scope="col" class="avatar_table"></th>
         <th scope="col">Utilisateur</th>
-        <th scope="col">Inscription</th>
+        <th scope="col" class="subscribe_table">Inscription</th>
         <th scope="col">Mail</th>
         <th scope="col">État du compte</th>
     </tr>
@@ -41,13 +44,13 @@
        else {$status = '<i class="fas fa-user-slash pr-2 text-danger"></i>Banni';}
         ?>
             <tr>
-                <th class="list_avatar"><img src="<?= $member->avatar ?>"></th>
+                <th class="list_avatar avatar_table"><img alt="member_avatar" src="<?= $member->avatar ?>"></th>
                 <td class="search_username">
                     <a href="/administration/modifier-utilisateur/<?= $member->username; ?>.html">
                     <?= $member->username ?>
                     </a>
                 </td>
-            <td><?= $member->date ?></td>
+            <td class="subscribe_table"><?= $member->date ?></td>
             <td><?= $member->mail ;?></td>
             <td><?= $status ?></td>
         </tr>

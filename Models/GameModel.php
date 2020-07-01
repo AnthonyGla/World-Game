@@ -1,6 +1,18 @@
 <?php
 class Game
 {
+
+public function create($id, $game)
+{
+    $sth = Database::getInstance()->prepare('INSERT INTO username_game (username_game, id_list_games, id_users) VALUES (:username_game, :id_list_games, :id_users)');
+    $sth->bindValue(':username_game', '', PDO::PARAM_STR);
+    $sth->bindValue(':id_list_games', $game, PDO::PARAM_INT);
+    $sth->bindValue(':id_users', $id, PDO::PARAM_INT);
+    if ($sth->execute()) {
+        return true;
+    }
+}
+
     public function getUsernamesGames($username)
     {
         $sth = Database::getInstance()->prepare('SELECT u.username, ug.* FROM users u INNER JOIN username_game ug ON u.id = ug.id_users WHERE u.username = :username');
