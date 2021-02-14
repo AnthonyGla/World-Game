@@ -27,7 +27,7 @@ class Database
     /**
      * @var string
      */
-    const DEFAULT_SQL_PASS = 'Anthony123-';
+    const DEFAULT_SQL_PASS = 'PASS';
 
     /**
      * @var string
